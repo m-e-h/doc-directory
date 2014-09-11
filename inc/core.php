@@ -54,3 +54,12 @@ function cmb2_get_post_options( $query_args ) {
 function doc_add_image_sizes() {
 	add_image_size( 'directory-thumbnail', 100, 75, true );
 }
+
+function my_connection_types() {
+    p2p_register_connection_type( array(
+        'name' => 'employees_to_departments',
+        'from' => 'employee',
+        'to' => 'department'
+    ) );
+}
+add_action( 'p2p_init', 'my_connection_types' );

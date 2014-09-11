@@ -91,12 +91,12 @@ final class DOC_Directory {
 	 * @return void
 	 */
 	function includes() {
-
+		require_once( DIRECTORY_DIR . 'p2p/posts-to-posts.php' 	);
 		require_once( DIRECTORY_DIR . 'cmb/init.php'       		);
 		require_once( DIRECTORY_DIR . 'inc/core.php'       		);
 		require_once( DIRECTORY_DIR . 'inc/post-types.php' 		);
 		require_once( DIRECTORY_DIR . 'inc/taxonomies.php' 		);
-		require_once( DIRECTORY_DIR . 'inc/template.php'   		);
+		//require_once( DIRECTORY_DIR . 'inc/template.php'   		);
 		require_once( DIRECTORY_DIR . 'inc/meta.php' 			);
 	}
 
@@ -121,8 +121,8 @@ final class DOC_Directory {
 	function admin() {
 
 		if ( is_admin() ) {
-			require_once( DIRECTORY_DIR . 'admin/class-directory-admin.php'    );
-			require_once( DIRECTORY_DIR . 'admin/class-directory-settings.php' );
+			//require_once( DIRECTORY_DIR . 'admin/class-directory-admin.php'    );
+			//require_once( DIRECTORY_DIR . 'admin/class-directory-settings.php' );
 		}
 	}
 
