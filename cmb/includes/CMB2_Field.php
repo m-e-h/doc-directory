@@ -428,14 +428,16 @@ class CMB2_Field {
 			return;
 		}
 
-		$classes    = 'cmb-type-'. sanitize_html_class( $this->type() );
-		$classes   .= ' cmb2_id_'. sanitize_html_class( $this->id() );
+		$classes    = 'cmb-type-'. str_replace( '_', '-', sanitize_html_class( $this->type() ) );
+		$classes   .= ' cmb2-id-'. str_replace( '_', '-', sanitize_html_class( $this->id() ) );
 		$classes   .= $this->args( 'repeatable' ) ? ' cmb-repeat' : '';
 		$classes   .= $this->group ? ' cmb-repeat-group-field' : '';
 		// 'inline' flag, or _inline in the field type, set to true
 		$classes   .= $this->args( 'inline' ) ? ' cmb-inline' : '';
 
-		printf( "<li class=\"cmb-row %s\">\n", $classes );
+		$this->peform_param_cb( 'before_row' );
+
+		printf( "<div class=\"cmb-row %s\">\n", $classes );
 
 		if ( 'title' == $this->type() || ! $this->args( 'show_names' ) ) {
 			echo "\t<div class=\"cmb-td\">\n";
@@ -451,14 +453,34 @@ class CMB2_Field {
 			echo "\n\t<div class=\"cmb-td\">\n";
 		}
 
-		echo $this->args( 'before' );
+		$this->peform_param_cb( 'before' );
 
 		$this_type = new CMB2_Types( $this );
 		$this_type->render();
 
-		echo $this->args( 'after' );
+		$this->peform_param_cb( 'after' );
 
-		echo "\n\t</div>\n</li>";
+		echo "\n\t</div>\n</div>";
+
+		$this->peform_param_cb( 'after_row' );
+	}
+
+	/**
+	 * Check if param is a callback, and if so, call it.
+	 * If not echo out whatever is there.
+	 *
+	 * @since  2.0.0
+	 * @param  string  $param Field parameter
+	 */
+	public function peform_param_cb( $param ) {
+		if ( $cb = $this->maybe_callback( $param ) ) {
+			// Ok, callback is good, let's run it and bail
+			echo call_user_func( $cb, $this->args(), $this );
+			return;
+		}
+
+		// Otherwise just echo out whatever's there
+		echo $this->args( $param );
 	}
 
 	/**

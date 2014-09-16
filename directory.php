@@ -57,6 +57,9 @@ final class DOC_Directory {
 		/* Load the admin files. */
 		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
+		/* Enqueue scripts and styles. */
+		add_action( 'admin_init', array( $this, 'register_directory_styles' ) );
+
 		/* Register activation hook. */
 		register_activation_hook( __FILE__, array( $this, 'activation' ) );
 	}
@@ -95,8 +98,7 @@ final class DOC_Directory {
 		require_once( DIRECTORY_DIR . 'cmb/init.php'       		);
 		require_once( DIRECTORY_DIR . 'inc/core.php'       		);
 		require_once( DIRECTORY_DIR . 'inc/post-types.php' 		);
-		require_once( DIRECTORY_DIR . 'inc/taxonomies.php' 		);
-		//require_once( DIRECTORY_DIR . 'inc/template.php'   		);
+		//require_once( DIRECTORY_DIR . 'inc/taxonomies.php' 		);
 		require_once( DIRECTORY_DIR . 'inc/meta.php' 			);
 	}
 
@@ -125,6 +127,19 @@ final class DOC_Directory {
 			//require_once( DIRECTORY_DIR . 'admin/class-directory-settings.php' );
 		}
 	}
+
+	public static function register_directory_styles() {
+
+        /* Enqueue the stylesheet. */
+        wp_register_style(
+            'doc-directory',
+            trailingslashit( plugin_dir_url( __FILE__ ) ) . "css/directory.css" );
+
+        	wp_enqueue_style( 'doc-directory' );
+    }
+
+
+
 
 	/**
 	 * On plugin activation, add custom capabilities to the 'administrator' role.
