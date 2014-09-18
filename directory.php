@@ -98,7 +98,8 @@ final class DOC_Directory {
 		require_once( DIRECTORY_DIR . 'cmb/init.php'       		);
 		require_once( DIRECTORY_DIR . 'inc/core.php'       		);
 		require_once( DIRECTORY_DIR . 'inc/post-types.php' 		);
-		//require_once( DIRECTORY_DIR . 'inc/taxonomies.php' 		);
+		require_once( DIRECTORY_DIR . 'inc/p2p-connections.php' );
+		require_once( DIRECTORY_DIR . 'inc/taxonomies.php' 		);
 		require_once( DIRECTORY_DIR . 'inc/meta.php' 			);
 	}
 
