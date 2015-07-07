@@ -49,7 +49,7 @@ if ( !function_exists( 'register_extended_post_type' ) ) {
  *
  * @param string $post_type The post type name.
  * @param array  $args {
- *     Optional. The post type arguments.
+ *     Optional. The post type arguments. 
  *
  *     @type array  $admin_cols           Associative array of admin screen columns to show for this post type.
  *     @type array  $admin_filters        Associative array of admin screen filters to show for this post type.
@@ -92,7 +92,7 @@ class Extended_CPT {
 
 	/**
 	 * Default arguments for custom post types.
-	 *
+	 * 
 	 * The arguments listed are the ones which differ from the defaults in `register_post_type()`.
 	 *
 	 * @var array
@@ -349,7 +349,7 @@ class Extended_CPT {
 	/**
 	 * Get the array of private query vars for the given filters, to apply to the current query in order to filter it by the
 	 * given public query vars.
-	 *
+	 * 
 	 * @param  array $query   The public query vars, usually from `$wp_query->query`.
 	 * @param  array $filters The filters valid for this query (usually the value of the `admin_filters` or
 	 *                        `site_filters` argument when registering an extended post type).
@@ -415,7 +415,7 @@ class Extended_CPT {
 	/**
 	 * Get the array of private and public query vars for the given sortables, to apply to the current query in order to
 	 * sort it by the requested orderby field.
-	 *
+	 * 
 	 * @param  array $query     The public query vars, usually from `$wp_query->query`.
 	 * @param  array $sortables The sortables valid for this query (usually the value of the `admin_cols` or
 	 *                          `site_sortables` argument when registering an extended post type.
@@ -457,7 +457,7 @@ class Extended_CPT {
 	/**
 	 * Get the array of private and public query vars for the given sortables, to apply to the current query in order to
 	 * sort it by the requested orderby field.
-	 *
+	 * 
 	 * @param  array $query     The public query vars, usually from `$wp_query->query`.
 	 * @param  array $sortables The sortables valid for this query (usually the value of the `admin_cols` or
 	 *                          `site_sortables` argument when registering an extended post type).
@@ -570,7 +570,7 @@ class Extended_CPT {
 
 	/**
 	 * Action fired after a CPT is registered in order to set up the custom permalink structure for the post type.
-	 *
+	 * 
 	 * @param string $post_type Post type name.
 	 * @param object $args      Arguments used to register the post type.
 	 */
@@ -584,7 +584,7 @@ class Extended_CPT {
 
 	/**
 	 * Filter the post type permalink in order to populate its rewrite tags.
-	 *
+	 * 
 	 * @param  string  $post_link The post's permalink.
 	 * @param  WP_Post $post      The post in question.
 	 * @param  bool    $leavename Whether to keep the post name.
@@ -660,7 +660,7 @@ class Extended_CPT {
 
 	/**
 	 * Add our rewrite tests to the Rewrite Rule Testing tests array.
-	 *
+	 * 
 	 * @param  array $tests The existing rewrite rule tests.
 	 * @return array        Updated rewrite rule tests.
 	 */
@@ -775,7 +775,7 @@ class Extended_CPT_Admin {
 
 	/**
 	 * Class constructor.
-	 *
+	 * 
 	 * @param Extended_CPT $cpt  An extended post type object.
 	 * @param array        $args Optional. The post type arguments.
 	 */
@@ -2016,7 +2016,7 @@ class Extended_CPT_Admin {
 
 	/**
 	 * Get a sensible title for the current item (usually the arguments array for a column)
-	 *
+	 * 
 	 * @param  array  $item An array of arguments
 	 * @return string       The item title
 	 */

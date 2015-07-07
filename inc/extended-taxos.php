@@ -435,7 +435,7 @@ class Extended_Taxonomy_Admin {
 		<div id="taxonomy-<?php echo $taxonomy; ?>" class="categorydiv">
 
 			<?php
-
+			
 			switch ( $type ) {
 
 				case 'dropdown':
@@ -521,7 +521,7 @@ class Extended_Taxonomy_Admin {
 
 		</div>
 		<?php
-
+	
 	}
 
 	/**
