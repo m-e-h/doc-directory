@@ -90,8 +90,14 @@ final class DOC_Directory {
      * @return void
      */
     public function includes() {
+
+        if ( !function_exists( '_p2p_load' ) ) {
         require_once(DIRECTORY_DIR . 'inc/vendor/posts-to-posts/posts-to-posts.php');
+        }
+        if ( !class_exists( 'CMB2', false ) ) {
         require_once(DIRECTORY_DIR . 'inc/vendor/cmb2/init.php');
+        }
+
         require_once(DIRECTORY_DIR . 'inc/p2p-connections.php');
         require_once(DIRECTORY_DIR . 'inc/core.php');
 		require_once(DIRECTORY_DIR . 'inc/extended-taxos.php');
