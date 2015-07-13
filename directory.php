@@ -94,17 +94,18 @@ final class DOC_Directory {
         if ( !function_exists( '_p2p_load' ) ) {
         require_once(DIRECTORY_DIR . 'inc/vendor/posts-to-posts/posts-to-posts.php');
         }
-        if ( !class_exists( 'CMB2', false ) ) {
-        require_once(DIRECTORY_DIR . 'inc/vendor/cmb2/init.php');
-        }
+        // if ( !class_exists( 'CMB2', false ) ) {
+        // require_once(DIRECTORY_DIR . 'inc/vendor/cmb2/init.php');
+        // }
 
         require_once(DIRECTORY_DIR . 'inc/p2p-connections.php');
-        require_once(DIRECTORY_DIR . 'inc/core.php');
 		require_once(DIRECTORY_DIR . 'inc/extended-taxos.php');
 		require_once(DIRECTORY_DIR . 'inc/extended-cpts.php');
         require_once(DIRECTORY_DIR . 'inc/post-types.php');
         require_once(DIRECTORY_DIR . 'inc/taxonomies.php');
-        require_once(DIRECTORY_DIR . 'inc/meta.php');
+        //require_once(DIRECTORY_DIR . 'inc/meta.php');
+
+        require_once(DIRECTORY_DIR . 'inc/core.php');
     }
 
     // public function admin() {

@@ -13,63 +13,67 @@
 
 
 
-add_action('p2p_init', 'emp_to_dept_connection');
-
-add_action('p2p_init', 'dept_to_doc_connection');
+add_action('p2p_init', 'doc_connections');
 
 //add_filter( 'p2p_new_post_args', 'p2p_published_by_default', 10, 3 );
 
 
 
-# Registers connections between employees and departments.
-function emp_to_dept_connection() {
+function doc_connections() {
 
-      // Make sure the Posts 2 Posts plugin is active.
-    // if (!function_exists('p2p_register_connection_type'))
-    //     return;
+    if (!function_exists('p2p_register_connection_type'))
+        return;
 
     p2p_register_connection_type(array(
         'name'      => 'employees_to_departments',
         'from'      => 'employee',
         'to'        => 'department',
+        'sortable'   => 'any',
+        'admin_column' => 'from',
+        'admin_dropdown' => 'from',
         'admin_box' => array(
-          'context' => 'advanced'
+          'context' => 'normal'
          ),
         'from_labels' => array(
-        'create' => __('Add Staff', 'doc-directory'),
+        'create' => __('Add Personnel', 'doc-directory'),
         ),
         'to_labels' => array(
         'create' => __('Add Department', 'doc-directory'),
         ),
-        'cardinality' => 'one-to-many',
+        'cardinality' => 'many-to-one',
         'title'       => array(
-            'from' => 'Staff',
-            'to' => 'Department'
+            'from' => 'Department',
+            'to' => 'Personnel'
             ),
         'fields'      => array(
             'role' => array(
                 'title' => 'Role/Title',
                 'type'  => 'text',
-            ),
-            'status' => array(
-                'title'  => 'Status',
-                'type'   => 'select',
-                'values' => array( 'Active', 'Retired', 'Deceased', 'On Leave' )
+                //'default_cb' => 'my_get_blurb',
             ),
         )
     ));
-}
 
-
-function dept_to_doc_connection() {
     p2p_register_connection_type(array(
         'name' => 'departments_to_documents',
         'from' => 'department',
         'to'   => 'document',
+        'admin_column' => 'to',
+        'admin_dropdown' => 'to',
     ));
 }
 
 
+function my_get_blurb( $connection, $direction ) {
+    global $post;
+
+    $key = ( 'from' == $direction ) ? 'department' : 'employee';
+
+    $post = get_post( $connection->$key );
+    setup_postdata( $post );
+
+    return get_the_excerpt();
+}
 
 
 /**

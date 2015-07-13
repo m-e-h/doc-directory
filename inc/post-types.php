@@ -28,21 +28,13 @@ function doc_employees_register_post_types() {
     register_extended_post_type('employee', array(
 
         'enter_title_here' => 'Employee Name',
+        'menu_icon'           => 'dashicons-id',
 
         # Add some custom columns to the admin screen:
         'admin_cols' => array(
             'featured_image' => array(
                 'title'          => 'Profile Pic',
                 'featured_image' => 'thumbnail',
-            ),
-            'published' => array(
-                'title'       => 'Published',
-                'meta_key'    => 'published_date',
-                'date_format' => 'd/m/Y'
-            ),
-            'my_connection' => array(
-                'title'      => 'Department',
-                'connection' => 'employees_to_departments',
             ),
         ),
     ));
@@ -56,6 +48,7 @@ function doc_departments_register_post_types() {
     register_extended_post_type('department', array(
 
         'enter_title_here' => 'Department Name',
+        'menu_icon'           => 'dashicons-groups',
 
         # Add some custom columns to the admin screen:
         'admin_cols' => array(
@@ -87,6 +80,7 @@ function doc_documents_register_post_types() {
     register_extended_post_type('document', array(
 
         'enter_title_here' => 'Document Title',
+        'menu_icon'           => 'dashicons-portfolio',
 
         # Add some custom columns to the admin screen:
         'admin_cols' => array(
@@ -94,10 +88,6 @@ function doc_documents_register_post_types() {
                 'title'       => 'Published',
                 'meta_key'    => 'published_date',
                 'date_format' => 'd/m/Y'
-            ),
-            'my_connection' => array(
-                'title'      => 'Owned by',
-                'connection' => 'departments_to_documents',
             ),
         ),
     ));
